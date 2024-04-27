@@ -22,3 +22,4 @@ class Category extends Model
         return $this->hasmany(Product::class, 'Cat_id','Cat_id');
     }
 }
+//delete
