@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['Cat_name','Cat_parent','Cat_status','created_at', 'updated_at','Cat_image'];
+    protected $fillable = ['Cat_name','Cat_parent','Cat_status','created_at', 'updated_at'];
 
     protected $table = 'category';
     protected $primaryKey = 'Cat_id';
@@ -22,4 +22,3 @@ class Category extends Model
         return $this->hasmany(Product::class, 'Cat_id','Cat_id');
     }
 }
-//delete

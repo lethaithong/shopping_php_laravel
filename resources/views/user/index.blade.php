@@ -106,7 +106,7 @@ MultiShop(BENULL)
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                     <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                         <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                        <h5 class="font-weight-semi-bold m-0">Đổi Trả Trong 14 Ngày</h5>
+                        <h5 class="font-weight-semi-bold m-0">Đổi Trả Trong Ngày</h5>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -133,7 +133,7 @@ MultiShop(BENULL)
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{$item->Pro_image}}" alt="">
+                        <img class="img-fluid w-100" src="{{url('image')}}/{{$item->Pro_image}}" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -142,7 +142,7 @@ MultiShop(BENULL)
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">{{$item->Pro_name}}</a>
+                        <a class="h6 text-decoration-none text-truncate" href="">{{mb_substr($item->Pro_name,0,30,'utf-8')}}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>{{number_format($item->Pro_price)}} VND</h5><h6 class="text-muted ml-2"><del></del></h6>
                         </div>
@@ -176,7 +176,7 @@ MultiShop(BENULL)
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{$item->Pro_image}}" alt="">
+                        <img class="img-fluid w-100" src="{{url('image')}}/{{$item->Pro_image}}" alt="">
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -185,7 +185,7 @@ MultiShop(BENULL)
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">{{$item->Pro_name}}</a>
+                        <a class="h6 text-decoration-none text-truncate" href="">{{mb_substr($item->Pro_name,0,30,'utf-8')}}</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
                             <h5>{{number_format($item->Pro_price)}}</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                         </div>

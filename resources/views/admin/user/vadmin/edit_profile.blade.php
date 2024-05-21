@@ -6,41 +6,39 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Hồ Sơ</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Hồ Sơ</li>
-            </ol>
+            @if (Session::get('message'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{Session::get('message');}}</strong>
+              </div>
+            @endif
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <form action="{{route('update_profile_ad')}}" method="post" enctype="multipart/form-data">
+                      @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                      @endif
+                        <form action="{{route('update_profile_ad')}}" method="post">
                               @csrf
                               <input type="hidden" name="_method" value="PUT" >
                               <input type="hidden" name="User_id" value="{{Auth::user()->User_id}}">
-                              @if(Session::has('message'))
-                              <div style="font-size: 18px;" class="alert alert-danger">{{Session::get('success')}}</div>
-                              @endif
                             <p>Tên:</p>
 
                             <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="email" placeholder="Enter email" name="Username" value="{{Auth::user()->Username}}">
                                 <label for="email">Tên</label>
                               </div>
-                              {{-- <p>Mật Khẩu:</p>
-                              <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="{{Auth::user()->password}}">
-                                <label for="email">Mật Khẩu</label>
-                              </div> --}}
                               <p>Email:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="email" placeholder="Enter email" name="Email" value="{{Auth::user()->Email}}">
                                 <label for="email">Email</label>
                               </div>
-                              {{-- <p>Hình Ảnh:</p>
-                              <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="input"  name="Image" value="{{Auth::user()->Image}}">
-                                <label for="pwd"></label>
-                              </div> --}}
                               <p>Địa Chỉ:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="email" placeholder="Enter email" name="Address" value="{{Auth::user()->Address}}">

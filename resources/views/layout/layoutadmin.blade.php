@@ -10,11 +10,11 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="{{url('assets2/lumino/css/styles.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -69,7 +69,7 @@
                             @if (Auth::user()->Level == 0)
                             <a class="nav-link" href="{{url('admin/category')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Danh Mục Sản Phẩm
+                                Danh Mục
                             </a>
 
                             <a class="nav-link" href="{{url('admin/product')}}">
@@ -123,10 +123,7 @@
                             
                         </div>
                     </div>
-                    {{-- <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
-                    </div> --}}
+                    
                 </nav>
             </div>
         @yield('content')  
@@ -182,7 +179,7 @@
 
             ykeys: ['Total'],
             
-            labels: ['Daonh Thu']
+            labels: ['Doanh Thu']
             });     
 
             $('.dashboard_filter').change(function() {

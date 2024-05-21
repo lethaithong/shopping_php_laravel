@@ -6867,7 +6867,6 @@ textarea.form-control-lg {
 
 .border-0 {
   border: 0 !important;
-  background: none;
 }
 
 .border-top {
@@ -11700,6 +11699,7 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
-.none{
-  display: -webkit-box ;
+.box{
+  display: inline-flex;
+  margin-top: -20px;
 }

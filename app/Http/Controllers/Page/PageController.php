@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Pagination\Paginator;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Gate;

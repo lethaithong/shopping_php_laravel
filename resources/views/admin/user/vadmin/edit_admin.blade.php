@@ -6,11 +6,13 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Cập Nhật Quản Trị Viên</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Cập Nhật Quản Trị Viên</li>
-            </ol>
-            <a href="{{url('admin/user/vadmin')}}"><button type="button" class="btn btn-info">Trở Về Trang Chủ</button></a>
+            <a href="{{url('admin/user/vadmin')}}"><button type="button" class="btn btn-info mt-2 mb-4">Trở Về Trang Chủ</button></a>
+            @if (Session::get('message'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{Session::get('message');}}</strong>
+              </div>
+            @endif
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -32,20 +34,11 @@
                                 <input type="text" class="form-control" id="" placeholder="Enter email" name="Username" value="{{$data->Username}}">
                                 <label for="email">Tên</label>
                               </div>
-                              {{-- <p>Password:</p>
-                              <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="" placeholder="Enter email" name="Password" value="{{$data->Password}}">
-                                <label for="email">Password</label>
-                              </div> --}}
                               <p>Email:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="" placeholder="Enter email" name="Email" value="{{$data->Email}}">
                                 <label for="email">Email</label>
                               </div>
-                              {{-- <p>Image Admin:</p>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="input" placeholder="Enter category" name="Image" value="{{$data->Image}}">
-                              </div> --}}
                               <p>Địa Chỉ:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <input type="text" class="form-control" id="" placeholder="Enter email" name="Address" value="{{$data->Address}}">

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th4 27, 2024 lúc 07:39 AM
--- Phiên bản máy phục vụ: 8.0.31
--- Phiên bản PHP: 7.4.33
+-- Thời gian đã tạo: Th1 10, 2023 lúc 10:07 AM
+-- Phiên bản máy phục vụ: 5.7.36
+-- Phiên bản PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
-  `Cat_id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Cat_id` int(100) UNSIGNED NOT NULL AUTO_INCREMENT,
   `Cat_name` varchar(100) NOT NULL,
   `Cat_image` varchar(100) DEFAULT NULL,
-  `Cat_parent` int NOT NULL DEFAULT '0',
+  `Cat_parent` int(1) NOT NULL DEFAULT '0',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Cat_status` int NOT NULL,
+  `Cat_status` int(10) NOT NULL,
   PRIMARY KEY (`Cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `category`
@@ -56,7 +56,7 @@ INSERT INTO `category` (`Cat_id`, `Cat_name`, `Cat_image`, `Cat_parent`, `update
 (52, 'Đồ Thể Thao', '/upload/files/0af397173daffaf1a3be53.jpg', 44, '2023-01-09 15:10:39', '2023-01-09 15:10:39', 0),
 (53, 'Đồ Bộ', '/upload/files/0af397173daffaf1a3be53.jpg', 44, '2023-01-09 15:10:55', '2023-01-09 15:10:55', 0),
 (54, 'Đồ Bộ Trẻ Em', '/upload/files/0af397173daffaf1a3be53.jpg', 45, '2023-01-09 15:11:28', '2023-01-09 15:11:28', 0),
-(55, 'Đồ Thể Thao', '/upload/files/0af397173daffaf1a3be53.jpg', 45, '2024-04-16 05:11:53', '2024-04-16 05:11:53', 0);
+(55, 'Đồ Thể Thao', '/upload/files/0af397173daffaf1a3be53.jpg', 45, '2023-01-09 15:37:53', '2023-01-09 15:37:53', 0);
 
 -- --------------------------------------------------------
 
@@ -66,14 +66,14 @@ INSERT INTO `category` (`Cat_id`, `Cat_name`, `Cat_image`, `Cat_parent`, `update
 
 DROP TABLE IF EXISTS `coupon`;
 CREATE TABLE IF NOT EXISTS `coupon` (
-  `Coupon_id` int NOT NULL AUTO_INCREMENT,
+  `Coupon_id` int(100) NOT NULL AUTO_INCREMENT,
   `Coupon_name` varchar(250) NOT NULL,
   `Coupon_code` varchar(100) NOT NULL,
-  `Coupon_quantity` int NOT NULL,
+  `Coupon_quantity` int(150) NOT NULL,
   `Coupon_condition` varchar(150) NOT NULL,
   `Coupon_number` varchar(150) NOT NULL,
   PRIMARY KEY (`Coupon_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `coupon`
@@ -92,9 +92,9 @@ INSERT INTO `coupon` (`Coupon_id`, `Coupon_name`, `Coupon_code`, `Coupon_quantit
 
 DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -106,22 +106,22 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
-  `Order_id` int NOT NULL AUTO_INCREMENT,
-  `User_id` int DEFAULT NULL,
+  `Order_id` int(250) NOT NULL AUTO_INCREMENT,
+  `User_id` int(150) DEFAULT NULL,
   `Coupon_id` varchar(100) DEFAULT NULL,
   `Full_name` varchar(100) NOT NULL,
   `Email` varchar(150) DEFAULT NULL,
-  `Phone` int NOT NULL,
+  `Phone` int(50) NOT NULL,
   `Address` varchar(150) DEFAULT NULL,
-  `Total` int NOT NULL,
-  `Total_coupon` int DEFAULT NULL,
+  `Total` int(50) NOT NULL,
+  `Total_coupon` int(50) DEFAULT NULL,
   `HTTT` varchar(150) DEFAULT NULL,
   `date_order` varchar(150) DEFAULT NULL,
-  `Status` int NOT NULL DEFAULT '0',
+  `Status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `order`
@@ -161,15 +161,15 @@ INSERT INTO `order` (`Order_id`, `User_id`, `Coupon_id`, `Full_name`, `Email`, `
 
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE IF NOT EXISTS `order_detail` (
-  `Order_detail_id` int NOT NULL AUTO_INCREMENT,
-  `Order_id` int NOT NULL,
+  `Order_detail_id` int(250) NOT NULL AUTO_INCREMENT,
+  `Order_id` int(250) NOT NULL,
   `Pro_name` varchar(250) NOT NULL,
   `image` varchar(150) NOT NULL,
-  `Pro_id` int NOT NULL,
-  `Price` int NOT NULL,
-  `Quantity` int NOT NULL,
+  `Pro_id` int(150) NOT NULL,
+  `Price` int(100) NOT NULL,
+  `Quantity` int(150) NOT NULL,
   PRIMARY KEY (`Order_detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `order_detail`
@@ -189,18 +189,18 @@ INSERT INTO `order_detail` (`Order_detail_id`, `Order_id`, `Pro_name`, `image`, 
 
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
-  `Pro_id` int NOT NULL AUTO_INCREMENT,
-  `Cat_id` int UNSIGNED NOT NULL,
+  `Pro_id` int(10) NOT NULL AUTO_INCREMENT,
+  `Cat_id` int(100) UNSIGNED NOT NULL,
   `Pro_name` varchar(150) NOT NULL,
   `Pro_price` varchar(50) NOT NULL,
   `Pro_image` varchar(150) NOT NULL,
   `Pro_des` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Pro_status` int NOT NULL,
+  `Pro_status` int(1) NOT NULL,
   PRIMARY KEY (`Pro_id`),
   KEY `Cat_id` (`Cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
@@ -241,7 +241,7 @@ INSERT INTO `product` (`Pro_id`, `Cat_id`, `Pro_name`, `Pro_price`, `Pro_image`,
 (81, 53, 'Bộ Quần Áo Nữ Mùa Hè Co Giãn In Chữ Possible', '399000', '/upload/images/product/product_5/bdn5134-tit1.jpg', '<p>ĐẶC T&Iacute;NH NỔI BẬT</p>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<p>Chất liệu 95% cotton + 5% spandex</p>\r\n\r\n<p>Bộ đồ d&aacute;ng cơ bản, co gi&atilde;n thoải m&aacute;i</p>\r\n\r\n<p>Thiết kế họa tiết trẻ trung, thời trang, &aacute;o in chữ nghệ thuật, quần d&aacute;ng &ocirc;m tự nhi&ecirc;n</p>\r\n\r\n<p>Bộ đồ mặc nh&agrave;, mặc đi chợ thoải m&aacute;i, m&aacute;t mẻ</p>\r\n\r\n<p>YODY - Look good. Feel good</p>', '2023-01-09 08:58:59', '2023-01-09 08:58:59', 0),
 (82, 54, 'Bộ Đồ Trẻ Em Da Cá In Logo Yody', '498000', '/upload/images/product/product_5/qmk5021-den-bdk5356-cpd-8.jpg', '<p>ĐẶC T&Iacute;NH NỔI BẬT</p>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<p>Bộ đồ kid kiểu d&aacute;ng cơ bản ấm &aacute;p, thoải m&aacute;i cho m&agrave;u đ&ocirc;ng lạnh</p>\r\n\r\n<p>Chất liệu da c&aacute; giữ ấm tốt, thấm &nbsp;h&uacute;t tốt hiệu quả ,thoải m&aacute;i mềm mại cho b&eacute;.&nbsp;</p>\r\n\r\n<p>Th&agrave;nh phần&nbsp;sợi vải: 58% cotton, 39% polyester v&agrave; 3% spandex mang đến những đặc t&iacute;nh ưu việt gi&uacute;p b&eacute; thoải m&aacute;i, tự tin khi diện đồ</p>\r\n\r\n<p>Sản phẩm c&oacute; độ bền cao</p>\r\n\r\n<p>YODY - Look good. Feel good.</p>', '2023-01-09 09:00:06', '2023-01-09 09:00:06', 0),
 (83, 54, 'Bộ Đồ Trẻ Em Unisex In Hình Thỏ Cute', '469000', '/upload/images/product/product_5/btk5073-tim01.jpg', '<p>ĐẶC T&Iacute;NH NỔI BẬT</p>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<p>Bộ đồ cho b&eacute;, ấm &aacute;p - thoải m&aacute;i - thời trang</p>\r\n\r\n<p>Vải c&oacute; sự kết hợp của sợi cotton v&agrave; polyester tạo n&ecirc;n đặc t&iacute;nh ưu việt cho sản phẩm như: giữ ấm tốt, thấm h&uacute;t, độ bền cao</p>\r\n\r\n<p>B&eacute; đi học hay ở nh&agrave; đều c&oacute; thể linh hoạt diện bộ đồ v&agrave; thoải m&aacute;i học tập, vận động vui chơi</p>\r\n\r\n<p>Chất vải mềm mịn, an to&agrave;n cho c&aacute;c b&eacute;, ba mẹ y&ecirc;n t&acirc;m</p>\r\n\r\n<p>YODY - Look good. Feel good.</p>', '2023-01-09 09:00:58', '2023-01-09 09:00:58', 0),
-(84, 55, 'Bộ Đồ Thể Thao Trẻ Em In Sọc', '420000', '/upload/images/product/product_5/sdk5007-cvt-3.jpg', '<p>ĐẶC T&Iacute;NH NỔI BẬT</p>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<p>Chất liệu:&nbsp;&nbsp;91% Polyester + 9% Spandex c&oacute; độ bền cao,&nbsp;&iacute;t nhăn nh&agrave;u</p>\r\n\r\n<p>Vải co gi&atilde;n tốt, ấm,&nbsp;tho&aacute;ng, ph&ugrave; hợp với chuyển động cơ thể b&eacute;</p>\r\n\r\n<p>Bộ nỉ thể thao cho b&eacute; d&aacute;ng cơ bản,&nbsp;&ocirc;m vừa người dễ mặc</p>\r\n\r\n<p>Thiết kế phong c&aacute;ch basic, điểm nhấn&nbsp;l&agrave; h&igrave;nh in phản quang tinh tế ở ngực &aacute;o v&agrave; hai b&ecirc;n sườn quần</p>\r\n\r\n<p>Ph&ugrave; hợp để b&eacute; mặc ở&nbsp;nh&agrave;, đi chơi, cafe c&ugrave;ng gia đ&igrave;nh bạn b&egrave;</p>\r\n\r\n<p>YODY - Look good. Feel good.</p>', '2023-01-09 09:02:02', '2024-04-16 04:38:14', 0);
+(84, 55, 'Bộ Đồ Thể Thao Trẻ Em In Sọc', '420000', '/upload/images/product/product_5/sdk5007-cvt-3.jpg', '<p>ĐẶC T&Iacute;NH NỔI BẬT</p>\r\n\r\n<h2>&nbsp;</h2>\r\n\r\n<p>Chất liệu:&nbsp;&nbsp;91% Polyester + 9% Spandex c&oacute; độ bền cao,&nbsp;&iacute;t nhăn nh&agrave;u</p>\r\n\r\n<p>Vải co gi&atilde;n tốt, ấm,&nbsp;tho&aacute;ng, ph&ugrave; hợp với chuyển động cơ thể b&eacute;</p>\r\n\r\n<p>Bộ nỉ thể thao cho b&eacute; d&aacute;ng cơ bản,&nbsp;&ocirc;m vừa người dễ mặc</p>\r\n\r\n<p>Thiết kế phong c&aacute;ch basic, điểm nhấn&nbsp;l&agrave; h&igrave;nh in phản quang tinh tế ở ngực &aacute;o v&agrave; hai b&ecirc;n sườn quần</p>\r\n\r\n<p>Ph&ugrave; hợp để b&eacute; mặc ở&nbsp;nh&agrave;, đi chơi, cafe c&ugrave;ng gia đ&igrave;nh bạn b&egrave;</p>\r\n\r\n<p>YODY - Look good. Feel good.</p>', '2023-01-09 09:02:02', '2023-01-09 09:02:02', 0);
 
 -- --------------------------------------------------------
 
@@ -251,19 +251,19 @@ INSERT INTO `product` (`Pro_id`, `Cat_id`, `Pro_name`, `Pro_price`, `Pro_image`,
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `User_id` int NOT NULL AUTO_INCREMENT,
+  `User_id` int(10) NOT NULL AUTO_INCREMENT,
   `Email` varchar(100) DEFAULT NULL,
   `password` varchar(150) DEFAULT NULL,
   `Username` varchar(100) NOT NULL,
-  `Phone` int DEFAULT NULL,
+  `Phone` int(15) DEFAULT NULL,
   `Address` varchar(150) DEFAULT NULL,
   `Image` varchar(150) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Level` int NOT NULL DEFAULT '5',
-  `Status` int DEFAULT '0',
+  `Level` int(1) NOT NULL DEFAULT '5',
+  `Status` int(1) DEFAULT '0',
   PRIMARY KEY (`User_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `user`
@@ -273,9 +273,7 @@ INSERT INTO `user` (`User_id`, `Email`, `password`, `Username`, `Phone`, `Addres
 (31, 'admin@gmail.com', '$2a$12$Un0Ar78QnfEMj.rPtSLChOXXrbolb2JTuLIeo.Y7TE8wQmJ1i5RYi', 'Admin', 123, 'gia lai', NULL, '2023-01-10 07:25:24', '2022-11-04 19:16:15', 0, 0),
 (181, 'thai@gmail.com', NULL, 'thong', 123456789, 'qưe', NULL, '2023-01-10 07:19:14', '2023-01-10 07:19:14', 6, 0),
 (182, 'thaithong03071999@gmail.com', '$2y$10$R4QazmXmIVAjqbsbYcZahONf2Wi./aU6hrZEwi4YZppY.2XYaySoS', 'thông thái', 935753308, 'gia lai', '/upload/images/tải xuống.jpg', '2023-01-10 09:59:47', '2023-01-10 07:20:29', 5, 0),
-(183, 'admin1@gsa', NULL, 'a', 1234567890, 'QQQ', NULL, '2023-01-10 07:22:32', '2023-01-10 07:22:32', 6, 0),
-(184, 'ak111@gmail.com', '$2y$10$8gGlNrTZvm/6/gNiYSq32OhjjsveKQWG7iR5nsKGqPzawCqivI7Xq', 'thai', NULL, NULL, '/upload/images/tải xuống.jpg', '2023-11-25 10:41:12', '2023-11-25 10:41:12', 5, 0),
-(185, 'thong@gmail.com', '$2y$10$0nPgmi5HwSMNM./l4wyAPuWp9EPpzhZz3dZhNrI.REK408oqOA6ze', 'thong', 111, 'ads', NULL, '2023-11-25 11:16:31', '2023-11-25 10:51:03', 0, 0);
+(183, 'admin1@gsa', NULL, 'a', 1234567890, 'QQQ', NULL, '2023-01-10 07:22:32', '2023-01-10 07:22:32', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -285,12 +283,12 @@ INSERT INTO `user` (`User_id`, `Email`, `password`, `Username`, `Phone`, `Addres
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)

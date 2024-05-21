@@ -6,11 +6,7 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Thêm Khuyến Mãi</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Thêm Khuyến Mãi</li>
-            </ol>
-            <a href="{{url('admin/coupon/')}}"><button type="button" class="btn btn-info">Trở Về Trang Chủ</button></a>
+            <a href="{{url('admin/coupon/')}}"><button type="button" class="btn btn-info mt-2 mb-4">Trở Về Trang Chủ</button></a>
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">

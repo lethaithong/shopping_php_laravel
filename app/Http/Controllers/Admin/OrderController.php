@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Models\Order;
-use App\Models\User;
 use App\Models\Order_detail;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -18,7 +13,7 @@ class OrderController extends Controller
     public function get_order_ad()
     {
     
-        $data = Order::orderByDesc('Order_id','ASC')->get();
+        $data = Order::orderByDesc('Order_id')->get();
         return view('admin/Order', ['data'=>$data]);
 
         // $userId = Auth::id();

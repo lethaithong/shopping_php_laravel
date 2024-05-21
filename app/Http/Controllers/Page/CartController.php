@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Gate;
 session_start();
 class CartController extends Controller
 {
-
     public function get_shopping_cart()
     {
         $userId = Auth::id();
@@ -37,8 +36,7 @@ class CartController extends Controller
     {
         $userId = Auth::id();
         if($userId){
-
-            $d = Cart::isEmpty();
+            //$d = Cart::isEmpty();
             $Product = product::find($request->Pro_id);
             $row = ['id'=>$Product->Pro_id,
                 'name'=>$Product->Pro_name,
@@ -62,7 +60,6 @@ class CartController extends Controller
 
     public function remove(Request $request)
     {
-        //dd($request);
         $userId = Auth::id();
         if($userId){
             Cart::session(Auth::id())->remove($request->id);
@@ -72,20 +69,26 @@ class CartController extends Controller
             Cart::remove($request->id);
             return redirect('/shopping_cart');
         }
-        
     }
 
     
     public function update(Request $request)
     {
-        //dd($request->all());
         $userId = Auth::id();
         if($userId){
-            Cart::session(Auth::id())->update($request->id, ['quantity'=>$request->quantity]);
+            Cart::session(Auth::id())->update($request->id,array(
+                'quantity' => array(
+                    'relative' => true,
+                    'value' => $request->quantity
+                )));
             return redirect('/shopping_cart');
         }
         else{
-            Cart::update($request->id, ['quantity'=>$request->quantity]);
+            Cart::update($request->id, array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->quantity
+                )));
             return redirect('/shopping_cart');
         }
     }
@@ -104,7 +107,6 @@ class CartController extends Controller
 
     public function post_checkout(request $request)
     {
-                //dd($request->all());
                     $User_id = Auth::id();
                     if($User_id){
                         $request -> validate(
@@ -170,7 +172,6 @@ class CartController extends Controller
                         }
                 
                     }else{
-                        //dd($request->all());
                     $request -> validate(
                         [
                             'Username' => 'required',
@@ -191,8 +192,6 @@ class CartController extends Controller
 
                     $data = $request->all();
                     $data = User::Create($data);
-                    //dd($data);
-
                         if($Order = Order::create([
                             'User_id' => $data->User_id,
                             'Full_name' => $request->Username,
@@ -259,12 +258,27 @@ class CartController extends Controller
             return view('admin/coupon/show_coupon',['data'=>Coupon::all()]);
         } else {
             return view('admin/404');
-        }
-        
+        }  
     }
 
     public function store_coupon(request $request)
     {
+        $request -> validate(
+            [
+                'Coupon_name' => 'required',
+                'Coupon_code' => 'required',
+                'Coupon_quantity' => 'required',
+                'Coupon_condition' => 'required',
+                'Coupon_number' => 'required',
+            ],
+            [
+                'Coupon_name.required' => 'Tên mã không được trống',
+                'Coupon_code.required' => 'Mã không được trống',
+                'Coupon_quantity.required' => 'Số lượng mã không được trống',
+                'Coupon_condition.required' => 'Tính năng mã không được trống',
+                'Coupon_number.required' => 'Điều kiện mã không được trống',
+            ]
+        );
         $coupon = new Coupon;
         $coupon->Coupon_name = $request->Coupon_name;
         $coupon->Coupon_code = $request->Coupon_code;
@@ -272,7 +286,7 @@ class CartController extends Controller
         $coupon->Coupon_condition = $request->Coupon_condition;
         $coupon->Coupon_number = $request->Coupon_number;
         $coupon -> save();
-        return redirect('admin/coupon/');
+        return redirect('admin/coupon/')->with('message','Thêm mã giảm giá Thành Công');
     }
 
     public function add_coupon()
@@ -283,13 +297,11 @@ class CartController extends Controller
         } else {
             return view('admin/404');
         }
-        
     }
 
     public function destroy(request $request)
     {
-        $coupon = Coupon::find($request->Coupon_id); // tra ve 1 dong co khoa chinh la maloai
-        $coupon->delete();
+        $coupon = Coupon::find($request->Coupon_id);
         return redirect('admin/coupon');
     }
 
@@ -332,42 +344,42 @@ class CartController extends Controller
         
     }
 
-    public function edit(request $request ,$id)
-    {
-       //dd($id);
-       if (Gate::allows('admin-coupon')) {
-        return view('admin/coupon/edit_coupon', ['data'=> Coupon::find($id)]);
-    } else {
-        return view('admin/404');
-    }
+    // public function edit(request $request ,$id)
+    // {
+    //    //dd($id);
+    //    if (Gate::allows('admin-coupon')) {
+    //     return view('admin/coupon/edit_coupon', ['data'=> Coupon::find($id)]);
+    // } else {
+    //     return view('admin/404');
+    // }
         
-    }
+    // }
 
-    public function update_coupon(request $request)
-    {
+    // public function update_coupon(request $request)
+    // {
 
-         //dd($request->all());  
+    //      //dd($request->all());  
 
-        //  $request -> validate(
-        //     [
-        //         'Cat_name' => 'required',
-        //         'Cat_image' => 'required',
-        //     ],
-        //     [
-        //         'Cat_name.required' => 'ten khong duoc de trong',
-        //         'Cat_image.required' => 'hinh khong duoc de trong',
-        //     ]
-        // );
+    //     //  $request -> validate(
+    //     //     [
+    //     //         'Cat_name' => 'required',
+    //     //         'Cat_image' => 'required',
+    //     //     ],
+    //     //     [
+    //     //         'Cat_name.required' => 'ten khong duoc de trong',
+    //     //         'Cat_image.required' => 'hinh khong duoc de trong',
+    //     //     ]
+    //     // );
 
-        $coupon = Coupon::find($request->Coupon_id);
-        $coupon->Coupon_name = $request->Coupon_name;
-        $coupon->Coupon_code = $request->Coupon_code;
-        $coupon->Coupon_quantity = $request->Coupon_quantity;
-        $coupon->Coupon_condition = $request->Coupon_condition;
-        $coupon->Coupon_number = $request->Coupon_number;
-        $coupon -> save();
-        return redirect('admin/coupon/');
-    }
+    //     $coupon = Coupon::find($request->Coupon_id);
+    //     $coupon->Coupon_name = $request->Coupon_name;
+    //     $coupon->Coupon_code = $request->Coupon_code;
+    //     $coupon->Coupon_quantity = $request->Coupon_quantity;
+    //     $coupon->Coupon_condition = $request->Coupon_condition;
+    //     $coupon->Coupon_number = $request->Coupon_numb
+    //     $coupon -> save();
+    //     return redirect('admin/coupon/');
+    // }
 
     public function delete_coupon()
     {

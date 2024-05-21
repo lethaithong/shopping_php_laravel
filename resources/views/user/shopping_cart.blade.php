@@ -14,6 +14,12 @@ MultiShop-Shopping_Cart(BENULL)
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-light table-borderless table-hover text-center mb-0">
+                @if (Session::get('message'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>{{Session::get('message');}}</strong>
+                  </div>
+                @endif
                 <thead class="thead-dark">
                     <tr>
                         <th>Tên sản phẩm</th>
@@ -30,7 +36,7 @@ MultiShop-Shopping_Cart(BENULL)
                 <tbody class="align-middle">
                     <tr>
                         <td class="align-middle">{{$item->name}}</td>
-                        <td class="align-middle"><img src="{{$item->attributes['image']}}" alt="" style="width: 50px;"></td>
+                        <td class="align-middle"><img src="{{url('image')}}/{{$item->attributes['image']}}" alt="" style="width: 50px;"></td>
                         <td class="align-middle">{{number_format($item->price)}} VND</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 120px;">
@@ -49,7 +55,7 @@ MultiShop-Shopping_Cart(BENULL)
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="id" value="{{$item->id}}">
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Ban co muon xoa')"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Bạn có muốn xóa?')"><i class="fa fa-times"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -198,17 +204,17 @@ MultiShop-Shopping_Cart(BENULL)
     </div>
 </div>
 @else
+<img src="{{url('assets/oloi/img/img-cart-empty.png')}}" alt="" class="mx-auto d-block" width="260" height="215">
 <div class="container-fluid">
     <div class="row px-xl-5">
-        <div class="col-12">
-          <div style="font-size: 18px;" class="alert alert-danger">Xin vui lòng thêm sản phẩm vào giỏ hàng!! </div>
-          <div style="font-size: 18px;"><a href="{{route('home')}}">
-            <i class="fas fa-arrow-left me-1"></i>
-            Trang Chủ
-          </a></div>
+        <div class="col-12 text-center">
+            <h4><span class="px-2">Hiện giỏ hàng của bạn không có sản phẩm nào!</span></h4>
+            <p class="font-weight-bold my-auto"><span class="px-2">Về trang cửa hàng để chọn mua sản phẩm bạn nhé!!</span></p>
+            <a href="{{route('product')}}"><button type="button" class="btn btn-outline-dark mt-2 rounded">Mua sắm ngay</button></a>
         </div>
     </div>
 </div>
+
 @endif
 <!-- Cart End -->
 

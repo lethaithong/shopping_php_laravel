@@ -30,7 +30,7 @@ MultiShop-Check_out(BENULL)
                 <tbody class="align-middle">
                     <tr>
                         <td class="align-middle">{{$item->name}}</td>
-                        <td class="align-middle"><img src="{{$item->attributes['image']}}" alt="" style="width: 50px;"></td>
+                        <td class="align-middle"><img src="{{url('image')}}/{{$item->attributes['image']}}" alt="" style="width: 50px;"></td>
                         <td class="align-middle">{{number_format($item->price)}}</td>
                         <td class="align-middle">{{$item->quantity}}</td>
                         <td class="align-middle">{{number_format($item->quantity * $item->price)}} VND</td>

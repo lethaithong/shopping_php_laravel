@@ -6,11 +6,8 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Cập Nhật Danh Mục</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Cập Nhật Danh Mục</li>
-            </ol>
-            <a href="{{url('admin/category/')}}"><button type="button" class="btn btn-info">Trở Về Trang Chủ</button></a>
+            
+            <a href="{{url('admin/category/')}}"><button type="button" class="btn btn-info mt-2 mb-4">Trở Về Trang Chủ</button></a>
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -33,10 +30,7 @@
                                 <input type="text" class="form-control" id="Category" placeholder="Enter category" name="Cat_name" value="{{$data->Cat_name}}">
                                 <label for="Category">Tên Danh Mục</label>
                               </div>
-                              <p>Hình:</p>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="input" placeholder="Enter category" name="Cat_image" value="{{$data->Cat_image}}">
-                              </div>
+                              
                               <p>Danh Mục Cha:</p>
                               
                               <div class="form-floating mb-3 mt-3">
@@ -44,12 +38,12 @@
                                   <option value="0">Danh Mục Cha</option>
                                   @foreach ($category as $item)
                                       @if($item->Cat_parent == 0)
-                                            <option value="{{$item->Cat_id}}">-{{$item->Cat_name}}</option>
-                                            @foreach ($category as $sub_item)
+                                            <option value="{{$item->Cat_id}}" @if($data->Cat_id == $item->Cat_id) selected @endif>-{{$item->Cat_name}}</option>
+                                            {{-- @foreach ($category as $sub_item)
                                                 @if($sub_item->Cat_parent != 0 && $sub_item->Cat_parent == $item->Cat_id)
-                                                    <option style="color: red; font-size:15px" value="{{$sub_item->Cat_id}}">&nbsp; &nbsp;+{{$sub_item->Cat_name}}</option>
+                                                    <option style="color: red; font-size:15px" value="{{$sub_item->Cat_parent}}" @if($sub_item->Cat_id == $data->Cat_id) selected @endif>&nbsp; &nbsp;+{{$sub_item->Cat_name}}</option>
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
                                       @endif
                                   @endforeach
                                 </select>

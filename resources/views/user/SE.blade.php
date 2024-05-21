@@ -9,14 +9,12 @@ MultiShop-Shopping_Cart(BENULL)
  <!-- Breadcrumb Start -->
  <div class="container-fluid">
     <div class="row px-xl-5">
-        <div class="col-12">
-          @if(Session::has('ok'))
-          <div style="font-size: 18px;" class="alert alert-danger">{{Session::get('ok')}} </div>
-          <div style="font-size: 18px;"><a href="{{route('home')}}">
-            <i class="fas fa-arrow-left me-1"></i>
-            Trang Chủ
-          </a></div>
-          @endif
+        <div class="col-12 text-center">
+          <h2><span class="px-2">MULTISHOP</span></h1>
+            <h5 class="font-weight-bold my-auto"><span class="mt-2">ĐẶT HÀNG THÀNH CÔNG</span></h5>
+            <p class="mt-2">Chúc mừng quý khách đẵ thanh toán thành công tại MULTISHOP</p>
+            <a href="{{route('home')}}"><button type="button" class="btn btn-outline-dark mt-2 rounded">Tiếp tục mua sắm
+            </button></a>
         </div>
     </div>
 </div>

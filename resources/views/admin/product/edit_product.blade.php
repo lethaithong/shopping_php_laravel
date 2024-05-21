@@ -6,11 +6,8 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Cập Nhật Sản Phẩm</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Cập Nhật Sản Phẩm</li>
-            </ol>
-            <a href="{{url('admin/product/')}}"><button type="button" class="btn btn-info">Trở Về Trang Chủ</button></a>
+            
+            <a href="{{url('admin/product/')}}"><button type="button" class="btn btn-info mt-2 mb-4">Trở Về Trang Chủ</button></a>
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -29,12 +26,12 @@
                           <input type="hidden" name="Pro_id" value="{{$data->Pro_id}}">
                             <p>Tên Sản Phẩm:</p>
                             <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="Pro_name" value="{{$data->Pro_name}}">
+                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="Pro_name" value="{{$data->Pro_name}}" required>
                                 <label for="email">Tên Sản Phẩm</label>
                               </div>
                               <p>Giá:</p>
                             <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="Pro_price" value="{{$data->Pro_price}}">
+                                <input type="text" class="form-control" id="email" placeholder="Enter email" name="Pro_price" value="{{$data->Pro_price}}" required pattern="[0-9]{1,6}" title="Giá tiền phải phải đúng định dạng và không quá 9 kí tự">
                                 <label for="email">Giá</label>
                               </div>
                               <p>Thuộc Danh Mục:</p>
@@ -52,24 +49,15 @@
                                   @endforeach
                                 </select>
                                 </div>
+                              
                               <p>Hình Ảnh:</p>
                               <div class="form-floating mt-3 mb-3">
-                                <input type="text" class="form-control" id="input"  name="Pro_image" value="{{$data->Pro_image}}">
-                                
-                              {{-- </div><p>Size:</p>
-                              <div class="form-floating mb-3 mt-3">
-                                <select class="form-select" id="sel1" name="Pro_size">
-                                  <option value="S">S</option>
-                                  <option value="M">M</option>
-                                  <option value="L">L</option>
-                                  <option value="XL">XL</option>
-                                  <option value="XL">XXL</option>
-                                </select>
-                                <label for="sel1" class="form-label">Select list (select one):</label>
-                              </div> --}}
+                                <input type="file" name="Pro_image" accept="image/*" required>
+                              </div>
+                             
                               <p>Mô Tả:</p>
                               <div class="form-floating mb-3 mt-3">
-                                <textarea class="form-control" id="comment" name="Pro_des" placeholder="Comment goes here" ></textarea>
+                                <textarea class="form-control" id="comment" name="Pro_des" placeholder="Comment goes here" >{{$data->Pro_des}}</textarea>
                                 
                               </div>
                               <p>Trạng Thái:</p>

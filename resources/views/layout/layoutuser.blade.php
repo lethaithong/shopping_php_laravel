@@ -115,22 +115,22 @@
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         @foreach ($category as $item)
-                            
+                        @if ($item->Cat_parent == 0)
                                 <div class="nav-item dropdown dropright">
-                                    @if ($item->Cat_parent == 0)
-                                    <a href="{{url('product_by_category')}}/{{$item->Cat_id}}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{$item->Cat_name}}<i class="fa fa-angle-right float-right mt-1"></i></a>
+                                    
+                                    <a href="" class="nav-link " data-toggle="dropdown">{{$item->Cat_name}}<i class="fa fa-angle-right float-right mt-1"></i></a>
                                     <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                         
                                         @foreach ($category as $sub_item)
                                             @if ($sub_item->Cat_parent != 0 && $sub_item->Cat_parent == $item->Cat_id)
-                                                <a href="#" class="dropdown-item">{{$sub_item->Cat_name}}</a>
+                                                <a href="{{url('product_by_category')}}/{{$sub_item->Cat_id}}" class="dropdown-item">{{$sub_item->Cat_name}}</a>
                                             @endif  
                                         @endforeach
 
                                     </div>
-                                    @endif
+                                   
                                 </div>
-                            
+                                @endif
                         @endforeach
                     </div>
                 </nav>
@@ -147,25 +147,24 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             
-
                             @foreach ($category as $item)
-                           
+                            @if ($item->Cat_parent == 0 && $item->Cat_status == 0)
                             <div class="nav-item dropdown">
-                                @if ($item->Cat_parent == 0 && $item->Cat_status == 0)
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{$item->Cat_name}}</a>
-                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
 
-                                    @foreach ($category as $sub_item)
-                                    @if ($sub_item->Cat_parent != 0 && $sub_item->Cat_parent == $item->Cat_id && $sub_item->Cat_status == 0)
-                                    <a href="{{url('product_by_category')}}/{{$sub_item->Cat_id}}" class="dropdown-item">{{$sub_item->Cat_name}}</a>
-                                    @endif  
-
-                                @endforeach
-                                </div>
-                                @endif
+                                    <a href="" class="nav-link " data-toggle="dropdown">{{$item->Cat_name}}</a>
+                                    <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                        @foreach ($category as $sub_item)
+                                        @if ($sub_item->Cat_parent != 0 && $sub_item->Cat_parent == $item->Cat_id && $sub_item->Cat_status == 0)
+                                        <a href="{{url('product_by_category')}}/{{$sub_item->Cat_id}}" class="dropdown-item">{{$sub_item->Cat_name}}</a>
+                                        @endif  
+                                        @endforeach
+                                    </div>
+                                    
+                                
                             </div>
-
+                            @endif
                             @endforeach
+                            
                             {{--            
                             <a href="{{url('/product')}}" class="nav-item nav-link">Product</a>
                              --}}
@@ -305,7 +304,7 @@
     <script src="{{url('assets/oloi/js/main.js')}}"></script>
     <script src="{{url('assets/ckfinder/ckfinder.js')}}" ></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 
 

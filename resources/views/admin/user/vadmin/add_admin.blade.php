@@ -6,11 +6,8 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Thêm Quản Trị</h1>
-            <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-                <li class="breadcrumb-item active">Thêm Quản Trị</li>
-            </ol>
-            <a href="{{url('admin/user/vadmin')}}"><button type="button" class="btn btn-info">Trở Về Trang Chủ</button></a>
+            
+            <a href="{{url('admin/user/vadmin')}}"><button type="button" class="btn btn-info mt-2 mb-4">Trở Về Trang Chủ</button></a>
             <div class="card mb-4">
                 <div class="card-body">
                     <table class="table table-bordered">
@@ -50,10 +47,6 @@
                                 <input type="text" class="form-control" id="email" placeholder="Enter email" name="Phone" value="{{old('Phone')}}">
                                 <label for="email">Số Điện Thoại</label>
                               </div>
-                              {{-- <p>Image Admin:</p>
-                            <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" id="input" placeholder="Enter category" name="Image" value="{{old('Username')}}">
-                              </div> --}}
                               <p>Trạng Thái:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <select class="form-select" id="sel1" name="Status">
@@ -65,8 +58,8 @@
                               <p>Cấp Bậc:</p>
                               <div class="form-floating mb-3 mt-3">
                                 <select class="form-select" id="sel1" name="Level">
-                                  <option value="0">Quản Lý</option>
                                   <option value="1">Nhân Viên</option>
+                                  <option value="0">Quản Lý</option>
                                 </select>
                                 <label for="sel1" class="form-label">Chọn</label>
                               </div>

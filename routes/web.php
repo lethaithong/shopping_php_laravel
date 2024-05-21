@@ -29,7 +29,7 @@ use App\Http\Controllers\MailController;
 //Route::middleware(['checkcus'])->group(function () {
     Route::get('/', [PageController::class, 'getHome'])->name('home');
 
-    route::get('/product', [PageController::class, 'product_paginate']);
+    route::get('/product', [PageController::class, 'product_paginate'])->name('product');
     route::get('/product_detail/{id}', [PageController::class, 'product_detail']);
     
     route::get('/contact', [PageController::class, 'contact'])->name('contact');
@@ -51,7 +51,7 @@ use App\Http\Controllers\MailController;
     route::get('/profile', [PageController::class, 'profile']);
     route::put('/profile', [UserController::class, 'update_profile'])->name('update_profile');
     
-    route::get('/product_by_category/{id}', [PageController::class, 'product_by_category'])->name('product_by_category');
+    route::get('product_by_category/{id}', [PageController::class, 'product_by_category'])->name('product_by_category');
     route::get('/search', [PageController::class, 'search'])->name('search');
     
     route::get('/check_out', [CartController::class, 'checkout'])->name('checkout');
@@ -75,7 +75,7 @@ Route::middleware(['auth','checkAdmin'])->group(function () {
 
     route::prefix('admin')->group (function(){
 
-        route::get('/', [AdminController::class, 'getAdmin'])->name('admin_index');
+        route::get('/', [AdminController::class, 'getAdmin']);
         route::post('/', [AdminController::class, 'index_ad'])->name('admin_index');
 
         route::post('/filter_by_date', [AdminController::class, 'filter_by_date']);//loc theo ngay
